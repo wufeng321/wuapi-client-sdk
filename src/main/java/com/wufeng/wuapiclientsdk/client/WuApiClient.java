@@ -17,6 +17,8 @@ import java.util.HashMap;
  */
 public class WuApiClient {
 
+    private static final String GATEWAY_HOST = "http://localhost:8090";
+
     private String accessKey;
     private String secretKey;
 
@@ -29,20 +31,20 @@ public class WuApiClient {
     public String getNameByGet(String name){
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("name", name);
-        String result = HttpUtil.get("http://localhost:8123/api/name/getNameByGet", paramMap);
+        String result = HttpUtil.get(GATEWAY_HOST+"/api/name/getNameByGet", paramMap);
         System.out.println(result);
         return result;
     }
     public String getNameByPost(String name){
         HashMap<String, Object> paramMap = new HashMap<>();
         paramMap.put("name", name);
-        String result = HttpUtil.post("http://localhost:8123/api/name/getNameByPost", paramMap);
+        String result = HttpUtil.post(GATEWAY_HOST+"/api/name/getNameByPost", paramMap);
         System.out.println(result);
         return result;
     }
     public String getUserNameByPost(User user){
         String json = JSONUtil.toJsonStr(user);
-        HttpResponse httpReponse = HttpRequest.post("http://localhost:8123/api/name/getUserNameByPost")
+        HttpResponse httpReponse = HttpRequest.post(GATEWAY_HOST+"/api/name/getUserNameByPost")
                 .addHeaders(getHeaderMap(json))
                 .body(json)
                 .execute();
