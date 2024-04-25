@@ -48,7 +48,6 @@ public class WuApiClient {
                 .addHeaders(getHeaderMap(json))
                 .body(json)
                 .execute();
-        System.out.println(httpReponse.getStatus());
         String result = httpReponse.body();
         System.out.println(result);
         return result;
