@@ -42,7 +42,7 @@ public class WuApiClient {
         System.out.println(result);
         return result;
     }
-    public String getUserNameByPost(User user){
+    public HttpResponse getUserNameByPost(User user){
         String json = JSONUtil.toJsonStr(user);
         HttpResponse httpReponse = HttpRequest.post(GATEWAY_HOST+"/api/name/getUserNameByPost")
                 .addHeaders(getHeaderMap(json))
@@ -50,7 +50,7 @@ public class WuApiClient {
                 .execute();
         String result = httpReponse.body();
         System.out.println(result);
-        return result;
+        return httpReponse;
     }
 
     private HashMap<String, String> getHeaderMap(String body){
